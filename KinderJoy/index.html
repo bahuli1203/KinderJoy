@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- Optimized exact viewport constraints to prevent mobile bounce & zooming -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>KinderJoy – Your Feelings, Your Games!</title>
+  <meta name="description"
+    content="KinderJoy helps kids aged 6–14 explore emotions through fun interactive mini-games!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       EGG LOADING ANIMATION OVERLAY
+  ═══════════════════════════════════════ -->
+  <div id="egg-loader" class="egg-loader-overlay">
+    <div class="egg-loader-scene">
+
+      <!-- KinderJoy name pops OUT of the egg -->
+      <div class="egg-kinderjoy-popup" id="egg-kj-popup">
+        <span class="egg-kj-icon">🧠</span>
+        <span class="egg-kj-text">KinderJoy</span>
+      </div>
+
+
+      <!-- The egg -->
+      <div class="egg-wrap" id="egg-wrap">
+        <div class="egg-top" id="egg-top">
+          <div class="egg-shine"></div>
+          <div class="egg-stripe stripe-1"></div>
+          <div class="egg-stripe stripe-2"></div>
+        </div>
+        <div class="egg-bottom" id="egg-bottom">
+          <div class="egg-shine egg-shine-b"></div>
+          <div class="egg-stripe stripe-3"></div>
+        </div>
+      </div>
+
+      <!-- Toys that scatter sideways -->
+      <div class="egg-toy toy-1" id="et1">🧸</div>
+      <div class="egg-toy toy-2" id="et2">🍭</div>
+      <div class="egg-toy toy-3" id="et3">🌟</div>
+      <div class="egg-toy toy-4" id="et4">🎀</div>
+      <div class="egg-toy toy-5" id="et5">🌈</div>
+      <div class="egg-toy toy-6" id="et6">🎉</div>
+
+      <!-- Bouncing dots -->
+      <div class="egg-loading-dots">
+        <span class="egg-dot"></span>
+        <span class="egg-dot"></span>
+        <span class="egg-dot"></span>
+      </div>
+    </div>
+  </div>
+  <!-- Theme Toggle -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+    <span class="toggle-icon toggle-icon-moon">🌙</span>
+    <span class="toggle-knob"></span>
+    <span class="toggle-icon toggle-icon-sun">☀️</span>
+  </button>
+
+  <!-- Glowing Cursor & Tail -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div class="cursor-trail-container" id="cursor-trail-container"></div>
+
+  <!-- ═══ FLOATING BG OBJECTS ═══ -->
+  <div class="bg-scene">
+    <div class="floater f1">⭐</div>
+    <div class="floater f2">🌈</div>
+    <div class="floater f3">☁️</div>
+    <div class="floater f4">✨</div>
+    <div class="floater f5">🌟</div>
+    <div class="floater f6">💫</div>
+    <div class="floater f7">🎈</div>
+    <div class="floater f8">🍭</div>
+  </div>
+
+  <!-- Particle container -->
+  <div id="particles" class="particles"></div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 1: HOME / LANDING
+  ═══════════════════════════════════════ -->
+  <section id="screen-home" class="screen active">
+    <div class="home-wrap">
+
+      <!-- Logo Area -->
+      <div class="home-logo">
+        <div class="logo-3d-wrap">
+          <div class="logo-3d">
+            <span class="logo-brain">🧠</span>
+          </div>
+          <div class="logo-shadow"></div>
+        </div>
+        <h1 class="logo-text">KinderJoy</h1>
+        <p class="logo-sub">Your feelings, your adventure! 🚀</p>
+      </div>
+
+      <!-- Mascot -->
+      <div class="mascot-wrap" id="mascot-home">
+        <div class="mascot-body">
+          <div class="mascot-face" id="mascot-face">😊</div>
+          <div class="mascot-shadow"></div>
+        </div>
+        <div class="mascot-bubble" id="mascot-bubble">
+          Hey buddy! 👋<br>How are you feeling today?
+        </div>
+      </div>
+
+      <!-- CTA + Dancing Characters side by side -->
+      <div class="cta-dance-row">
+
+        <button class="btn-3d-primary" id="btn-start" onclick="goTo('screen-emotions')">
+          <span class="btn-3d-face">Let's Play! 🎮</span>
+          <span class="btn-3d-side"></span>
+        </button>
+
+      </div>
+
+      <!-- Floating mini-emotion preview -->
+      <div class="home-emo-preview">
+        <span class="mini-emo" style="--d:0s">😄</span>
+        <span class="mini-emo" style="--d:.2s">😢</span>
+        <span class="mini-emo" style="--d:.4s">😡</span>
+        <span class="mini-emo" style="--d:.6s">😰</span>
+        <span class="mini-emo" style="--d:.8s">😴</span>
+        <span class="mini-emo" style="--d:1s">😐</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 2: EMOTION SELECT
+  ═══════════════════════════════════════ -->
+  <section id="screen-emotions" class="screen">
+    <div class="emotions-wrap">
+      <button class="btn-back-top" onclick="goTo('screen-home')">🏠 Home</button>
+      <h2 class="section-title">How are you feeling? 🌈</h2>
+      <p class="section-sub">Tap your mood or tell me!</p>
+
+      <!-- Voice Interaction Button -->
+      <div style="text-align:center; width:100%;">
+        <button id="voice-btn" class="btn-voice" onclick="startVoice()">
+          <span class="voice-icon">🎤</span> Voice: "I feel..."
+        </button>
+      </div>
+
+      <div class="emotion-grid-3d">
+
+        <button class="emo-card" data-emotion="happy" onclick="pickEmotion('happy')" id="ec-happy">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😄</div>
+            <div class="emo-card-spark">✨</div>
+            <div class="emo-card-label">Happy</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+        <button class="emo-card" data-emotion="sad" onclick="pickEmotion('sad')" id="ec-sad">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😢</div>
+            <div class="emo-card-spark">💧</div>
+            <div class="emo-card-label">Sad</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+        <button class="emo-card" data-emotion="angry" onclick="pickEmotion('angry')" id="ec-angry">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😡</div>
+            <div class="emo-card-spark">🔥</div>
+            <div class="emo-card-label">Angry</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+        <button class="emo-card" data-emotion="nervous" onclick="pickEmotion('nervous')" id="ec-nervous">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😰</div>
+            <div class="emo-card-spark">🌀</div>
+            <div class="emo-card-label">Nervous</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+        <button class="emo-card" data-emotion="tired" onclick="pickEmotion('tired')" id="ec-tired">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😴</div>
+            <div class="emo-card-spark">💤</div>
+            <div class="emo-card-label">Tired</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+        <button class="emo-card" data-emotion="bored" onclick="pickEmotion('bored')" id="ec-bored">
+          <div class="emo-card-inner">
+            <div class="emo-card-icon">😐</div>
+            <div class="emo-card-spark">💭</div>
+            <div class="emo-card-label">Bored</div>
+            <div class="emo-card-glow"></div>
+          </div>
+          <div class="emo-card-shadow"></div>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 3: GAME CARD (Response + Play)
+  ═══════════════════════════════════════ -->
+  <section id="screen-gamecard" class="screen">
+    <div class="gamecard-wrap">
+      <!-- TOP NAV -->
+      <nav class="top-nav">
+        <h1 class="logo-text">KinderJoy</h1>
+        <div class="nav-controls">
+          <!-- Gamification XP only (no streak/star symbols) -->
+          <div class="gamification" id="g-stats">
+            <div class="xp-bar-wrap" title="XP Level">
+              <div class="xp-track">
+                <div class="xp-fill" id="xp-fill"></div>
+              </div>
+              <span id="xp-val" class="xp-val">0 XP</span>
+            </div>
+          </div>
+          <!-- Music Toggle -->
+          <button id="music-toggle" class="btn-icon" aria-label="Toggle Ambient Music"
+            onclick="toggleMusic()">🎵</button>
+          <!-- Theme Toggle UI -->
+          <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-icon-light">☀️</span>
+            <span class="theme-icon-dark">🌙</span>
+          </button>
+        </div>
+      </nav>
+
+      <button class="btn-back-top" onclick="goTo('screen-emotions')">← Back</button>
+
+      <!-- Mascot reaction -->
+      <div class="gc-mascot-row">
+        <div class="gc-mascot" id="gc-mascot">😊</div>
+        <div class="gc-bubble" id="gc-bubble">Loading...</div>
+      </div>
+
+      <!-- 3D Game Card -->
+      <div class="game-card-3d" id="game-card-3d">
+        <div class="gc-top" id="gc-emotion-banner">
+          <span id="gc-emo-icon">🎮</span>
+          <span id="gc-emo-label">Your Mood</span>
+        </div>
+        <div class="gc-body">
+          <div class="gc-activity-icon" id="gc-act-icon">🎯</div>
+          <div class="gc-activity-name" id="gc-act-name">Activity</div>
+          <div class="gc-activity-desc" id="gc-act-desc">Description here</div>
+          <div class="gc-floating-objects" id="gc-objects"></div>
+        </div>
+        <button class="btn-3d-play" onclick="launchGame()">
+          <span class="btn-3d-face">Play Now! 🎮</span>
+          <span class="btn-3d-side"></span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 4: GAME PLAY SCREEN
+  ═══════════════════════════════════════ -->
+  <section id="screen-game" class="screen">
+    <div class="game-wrap">
+      <div class="game-top-bar">
+        <button class="btn-back-top" onclick="goBackFromGame()">← Back</button>
+        <div class="game-top-title" id="game-top-title">Game!</div>
+        <div class="game-top-score" id="game-top-score"></div>
+      </div>
+      <div id="game-stage"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 5: CONGRATS / FEEDBACK
+  ═══════════════════════════════════════ -->
+  <section id="screen-congrats" class="screen">
+    <div class="congrats-wrap">
+      <div class="congrats-stars-bg">
+        <span>⭐</span><span>🌟</span><span>✨</span><span>💫</span><span>⭐</span>
+      </div>
+      <div class="congrats-mascot" id="congrats-mascot">🎉</div>
+      <h2 class="congrats-title">Amazing Job!</h2>
+      <p class="congrats-sub" id="congrats-sub">You did it!</p>
+      <div class="congrats-badge">
+        <div class="badge-3d">
+          <span class="badge-star">⭐</span>
+          <span class="badge-star">⭐</span>
+          <span class="badge-star">⭐</span>
+        </div>
+      </div>
+      <div class="congrats-btns">
+        <button class="btn-3d-primary" onclick="goTo('screen-emotions')">
+          <span class="btn-3d-face">Play Again! 🎮</span>
+          <span class="btn-3d-side"></span>
+        </button>
+        <button class="btn-3d-ghost" onclick="goTo('screen-home')">
+          🏠 Home
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
